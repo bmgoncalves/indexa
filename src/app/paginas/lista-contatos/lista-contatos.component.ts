@@ -9,12 +9,7 @@ import { ContatoComponent } from '../../componentes/contato/contato.component';
 import { SeparadorComponent } from '../../componentes/separador/separador.component';
 import { FormularioContatoComponent } from '../formulario-contato/formulario-contato.component';
 import { ContatoService } from '../../services/contato.service';
-
-interface Contato {
-  id: number
-  nome: string
-  telefone: string
-}
+import { Contato } from '../../componentes/contato/contato';
 
 
 @Component({
@@ -56,16 +51,20 @@ export class ListaContatosComponent implements OnInit{
     }
     return this.contatos.filter(contato => {
       // Compara os nomes sem acentuações
-      return this.removerAcentos(contato.nome).toLowerCase().includes(this.removerAcentos(this.filtroPorTexto).toLowerCase());
+      return this.removerAcentos(contato.nome)
+                 .toLowerCase()
+                 .includes(this.removerAcentos(this.filtroPorTexto)
+                               .toLowerCase());
     })
   }
 
   filtrarContatosPorLetraInicial(letra: string): Contato[] {
-    return this.filtrarContatosPorTexto().filter(contato => {
-      // Compara a letra inicial sem considerar acentuações
-      return this.removerAcentos(contato.nome)
-                 .toLowerCase()
-                 .startsWith(this.removerAcentos(letra).toLowerCase());
+    return this.filtrarContatosPorTexto()?.filter(contato => {
+              // Compara a letra inicial sem considerar acentuações
+              return this.removerAcentos(contato.nome)
+                         .toLowerCase()
+                         .startsWith(this.removerAcentos(letra)
+                                         .toLowerCase());
     })
   }
 }
