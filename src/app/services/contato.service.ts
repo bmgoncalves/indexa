@@ -21,6 +21,6 @@ export class ContatoService implements OnInit{
   }
 
   salvarContato(contato:Contato){
-
+    return this.http.post<Contato>(this.API, contato);
   }
 }

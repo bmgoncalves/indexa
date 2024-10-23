@@ -17,6 +17,15 @@
       "redes": "",
       "observacoes": "",
       "id": 2
+    },
+    {
+      "nome": "Bruno Mendes ",
+      "telefone": "11999999999",
+      "email": "teste@teste.com.br",
+      "aniversario": "2024-10-22",
+      "redes": "",
+      "observacoes": "",
+      "id": 3
     }
   ]
 }
