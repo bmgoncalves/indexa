@@ -2,12 +2,19 @@ import { ContatoService } from './../../services/contato.service';
 import { Component, OnInit } from '@angular/core';
 import { ContainerComponent } from '../../componentes/container/container.component';
 import { Contato } from '../../componentes/contato/contato';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { SeparadorComponent } from '../../componentes/separador/separador.component';
 
 @Component({
   selector: 'app-perfil-contato',
   standalone: true,
-  imports: [ContainerComponent, ContainerComponent],
+  imports: [
+    CommonModule,
+    ContainerComponent,
+    RouterLink,
+    SeparadorComponent
+  ],
   templateUrl: './perfil-contato.component.html',
   styleUrl: './perfil-contato.component.css',
 })
@@ -16,6 +23,7 @@ export class PerfilContatoComponent implements OnInit {
 
   contato: Contato = {
     nome: 'João',
+    avatar: '',
     telefone: '88 88888888',
     email: 'joao@email.com',
     aniversario: '1990-01-06',
@@ -44,7 +52,6 @@ export class PerfilContatoComponent implements OnInit {
   excluir(){
     if(this.contato.id){
       this.contatoService.excluirContato(this.contato.id).subscribe(() =>{
-        console.log(`chegou no excluir do botao`)
         	this.router.navigateByUrl('/lista-contatos');
       });
     }
